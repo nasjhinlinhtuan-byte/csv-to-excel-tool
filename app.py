@@ -3,8 +3,6 @@ import pandas as pd
 from openpyxl import load_workbook
 import tempfile
 
-
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -26,9 +24,19 @@ def process():
 
     # Ví dụ: điền dòng đầu tiên của CSV vào Excel
     # Bạn có thể sửa lại theo nhu cầu của bạn
-    ws["B2"] = df["Date demande"][0]
-    ws["B3"] = df["Date mise en service"][0]
-    ws["B4"] = df["Nb expéditions"][0]
+    ws["B3"] = df["Date demande"][0]
+    ws["G3"] = df["Date mise en service"][0]
+    ws["G5"] = df["Nb expéditions"][0]
+    ws["G6"] = df["Nb colis"][0]
+    ws["B7"] = df["Produit"][0]
+    ws["B9"] = df["Agence"][0]
+    ws["B14"] = df["Commercial"][0]
+
+
+
+
+
+
 
     # Tạo file tạm để trả về
     temp = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx")
@@ -38,6 +46,3 @@ def process():
 
 if __name__ == "__main__":
     app.run()
-
-
-
