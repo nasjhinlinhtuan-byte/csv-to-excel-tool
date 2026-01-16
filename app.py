@@ -31,6 +31,27 @@ def process():
     ws["B7"] = df["Produit"][0]
     ws["B9"] = df["Agence"][0]
     ws["B14"] = df["Commercial"][0]
+    ws["G14"] = df["Présence installation"][0]
+    ws["B16"] = df["Raison sociale"][0]
+    ws["G16"] = df["SIRET administratif"][0]
+    ws["B18"] = df["Adresse d'installation"][0]
+    ws["B21"] = df["UTILISATEUR"][0]
+    ws["F21"] = df["DECIDEUR"][0]
+    ws["B22"] = df["Téléphone UTILISATEUR"][0]
+    ws["F22"] = df["Téléphone DECIDEUR"][0]
+    ws["B23"] = df["Email"][0]
+    ws["A26"] = df["Compte ERM"][0]
+    ws["B26"] = df["Nom"][0]
+    ws["C26"] = df["Kg"][0]
+    ws["B14"] = df["Mes"][0]
+    ws["B14"] = df["Exp"][0]
+    ws["B14"] = df["Euro"][0]
+    ws["B14"] = df["Pal"][0]
+    ws["B14"] = df["Lot"][0]
+    ws["B14"] = df["S+"][0]
+    ws["B14"] = df["Hpd"][0]
+
+
 
 
 
