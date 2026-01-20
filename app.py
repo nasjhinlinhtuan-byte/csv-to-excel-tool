@@ -50,6 +50,10 @@ def process():
     ws["B14"] = df["Lot"][0]
     ws["B14"] = df["S+"][0]
     ws["B14"] = df["Hpd"][0]
+    ws["D26"] = "☑" if df["Euro"][0] == "Oui" else "☐"
+    ws["E26"] = "☑" if df["Euro"][0] == "Oui" else "☐"
+    ws["D27"] = "☑" if df["Euro"][0] == "Oui" else "☐"
+
 
 
 
