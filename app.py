@@ -40,12 +40,8 @@ def process():
     ws["B22"] = df["Téléphone UTILISATEUR"][0]
     ws["F22"] = df["Téléphone DECIDEUR"][0]
     ws["B23"] = df["Email"][0]
-values = df["Compte ERM"][0]  # là list: ["ERM11", "", "", "", ""]
 
-for i, val in enumerate(values):
-    ws[f"A{26 + i}"] = val
-
-
+    ws["A26"] = df["Compte ERM"][0]
     ws["B26"] = df["Nom"][0]
     ws["C26"] = df["Kg"][0]
     ws["B14"] = df["Mes"][0]
