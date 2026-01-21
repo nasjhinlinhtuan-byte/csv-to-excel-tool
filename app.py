@@ -43,18 +43,16 @@ def process():
     ws["A26"] = df["Compte ERM"][0]
     ws["B26"] = df["Nom"][0]
     ws["C26"] = df["Kg"][0]
-columns = ["Kg","Mes","Exp","Euro","Pal","Lot","S+","Hpd","Xps","Osi","Cl","Int","Opt"]
-row = df.iloc[0]  # dòng đầu tiên của CSV
-
-start_row = 26
-current_row = start_row
-
-for col in columns:
-    if row[col] == "On":  # nếu cột đó có dữ liệu
-        ws[f"D{current_row}"] = col
-        ws[f"E{current_row}"] = "☑"
-        current_row += 1
-
+    ws["D26"] = df["Mes"][0]
+    ws["D26"] = df["Exp"][0]
+    ws["D26"] = df["Euro"][0]
+    ws["D26"] = df["Pal"][0]
+    ws["D26"] = df["Lot"][0]
+    ws["D26"] = df["S+"][0]
+    ws["D26"] = df["Hpd"][0]
+    ws["D26"] = "☑" if df["Euro"][0] == "On" else "☐"
+    ws["E26"] = "☑" if df["Euro"][0] == "On" else "☐"
+    ws["D27"] = "☑" if df["Euro"][0] == "On" else "☐"
 
 
 
