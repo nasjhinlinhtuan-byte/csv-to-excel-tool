@@ -40,20 +40,21 @@ def process():
     ws["B22"] = df["Téléphone UTILISATEUR"][0]
     ws["F22"] = df["Téléphone DECIDEUR"][0]
     ws["B23"] = df["Email"][0]
-
     ws["A26"] = df["Compte ERM"][0]
     ws["B26"] = df["Nom"][0]
     ws["C26"] = df["Kg"][0]
-    ws["B14"] = df["Mes"][0]
-    ws["B14"] = df["Exp"][0]
-    ws["B14"] = df["Euro"][0]
-    ws["B14"] = df["Pal"][0]
-    ws["B14"] = df["Lot"][0]
-    ws["B14"] = df["S+"][0]
-    ws["B14"] = df["Hpd"][0]
-    ws["D26"] = "☑" if df["Euro"][0] == "On" else "☐"
-    ws["E26"] = "☑" if df["Euro"][0] == "On" else "☐"
-    ws["D27"] = "☑" if df["Euro"][0] == "On" else "☐"
+columns = ["Kg","Mes","Exp","Euro","Pal","Lot","S+","Hpd","Xps","Osi","Cl","Int","Opt"]
+row = df.iloc[0]  # dòng đầu tiên của CSV
+
+start_row = 26
+current_row = start_row
+
+for col in columns:
+    if row[col] == "On":  # nếu cột đó có dữ liệu
+        ws[f"D{current_row}"] = col
+        ws[f"E{current_row}"] = "☑"
+        current_row += 1
+
 
 
 
