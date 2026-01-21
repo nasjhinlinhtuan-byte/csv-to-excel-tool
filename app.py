@@ -51,19 +51,20 @@ def process():
     #ws["D26"] = df["S+"][0]
     #ws["D26"] = df["Hpd"][0]
     #ws["D26"] = "☑" if df["Euro"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Kg"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Mes"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Exp"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Euro"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Pal"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Lot"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["S+"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Hpd"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Xps"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Osi"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Cl"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Int"][0] == "On" else "☐"
-    ws["D26"].append("☑") if df["Opt"][0] == "On" else "☐"
+    ws["D26"]= "☑" if df["Kg"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Mes"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Exp"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Euro"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Pal"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Lot"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["S+"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Hpd"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Xps"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Osi"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Cl"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Int"][0] == "On" else "☐"
+    ws["D26"]="☑" if df["Opt"][0] == "On" else "☐"
+
 
 
 
