@@ -56,7 +56,7 @@ def process():
             wb.save(temp_excel)
 
             # Đặt tên file theo số dòng hoặc theo dữ liệu
-            filename = f"Demande_{i+1}.xlsm"
+            filename = f"C-FB120-0-Gris_Decoupage-Demarrage_{i+1}.xlsm"
 
             # Thêm file Excel vào ZIP
             zipf.write(temp_excel, arcname=filename)
@@ -69,3 +69,4 @@ def process():
 
 if __name__ == "__main__":
     app.run()
+
