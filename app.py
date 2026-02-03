@@ -20,10 +20,9 @@ def process():
 
     # Mở Excel mẫu
     wb = load_workbook(excel_template)
-    ws = wb.active  # hoặc wb["TênSheet"] nếu bạn có sheet cụ thể
+    ws = wb.active
 
-    # Ví dụ: điền dòng đầu tiên của CSV vào Excel
-    # Bạn có thể sửa lại theo nhu cầu của bạn
+    # Chỉ điền dữ liệu text — KHÔNG đụng vào checkbox
     ws["B3"] = df["Date demande"][0]
     ws["G3"] = df["Date mise en service"][0]
     ws["G5"] = df["Nb expéditions"][0]
@@ -43,15 +42,8 @@ def process():
     ws["A26"] = df["Compte ERM"][0]
     ws["B26"] = df["Nom"][0]
 
-    
-
-
-
-
-
-
-
-
+    # KHÔNG ghi gì vào D26, E26, D27, E27 nữa
+    # Checkbox trong file Excel mẫu sẽ được giữ nguyên
 
     # Tạo file tạm để trả về
     temp = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx")
@@ -61,5 +53,3 @@ def process():
 
 if __name__ == "__main__":
     app.run()
-
-
