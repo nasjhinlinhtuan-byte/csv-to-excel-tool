@@ -42,16 +42,8 @@ def process():
     ws["B23"] = df["Email"][0]
     ws["A26"] = df["Compte ERM"][0]
     ws["B26"] = df["Nom"][0]
-    #ws["C26"] = df["Kg"][0]
-    #ws["D26"] = df["Mes"][0]
-    #ws["D26"] = df["Exp"][0]
-    #ws["D26"] = df["Euro"][0]
-    #ws["D26"] = df["Pal"][0]
-    #ws["D26"] = df["Lot"][0]
-    #ws["D26"] = df["S+"][0]
-    #ws["D26"] = df["Hpd"][0]
-    #ws["D26"] = "☑" if df["Euro"][0] == "On" else "☐"
-    ws["D26"]= "☑" if df["Kg"][0] == "On" else "☐"
+
+    
 
 
 
@@ -69,4 +61,5 @@ def process():
 
 if __name__ == "__main__":
     app.run()
+
 
