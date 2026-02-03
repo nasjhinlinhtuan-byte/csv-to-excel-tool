@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, send_file
 import pandas as pd
 from openpyxl import load_workbook
 import tempfile
+import zipfile
+import os
 
 app = Flask(__name__)
 
@@ -11,45 +13,59 @@ def index():
 
 @app.route("/process", methods=["POST"])
 def process():
-    # Lấy file từ form
     csv_file = request.files["csv_file"]
     excel_template = request.files["excel_template"]
 
-    # Đọc CSV
     df = pd.read_csv(csv_file)
 
-    # Mở Excel mẫu (XLSM) và GIỮ VBA + Form Controls
-    wb = load_workbook(excel_template, keep_vba=True)
-    ws = wb.active
+    # Tạo file ZIP tạm
+    zip_path = tempfile.NamedTemporaryFile(delete=False, suffix=".zip").name
 
-    # Chỉ điền dữ liệu text — KHÔNG đụng vào checkbox
-    ws["B3"] = df["Date demande"][0]
-    ws["G3"] = df["Date mise en service"][0]
-    ws["G5"] = df["Nb expéditions"][0]
-    ws["G6"] = df["Nb colis"][0]
-    ws["B7"] = df["Produit"][0]
-    ws["B9"] = df["Agence"][0]
-    ws["B14"] = df["Commercial"][0]
-    ws["G14"] = df["Présence installation"][0]
-    ws["B16"] = df["Raison sociale"][0]
-    ws["G16"] = df["SIRET administratif"][0]
-    ws["B18"] = df["Adresse d'installation"][0]
-    ws["B21"] = df["UTILISATEUR"][0]
-    ws["F21"] = df["DECIDEUR"][0]
-    ws["B22"] = df["Téléphone UTILISATEUR"][0]
-    ws["F22"] = df["Téléphone DECIDEUR"][0]
-    ws["B23"] = df["Email"][0]
-    ws["A26"] = df["Compte ERM"][0]
-    ws["B26"] = df["Nom"][0]
+    with zipfile.ZipFile(zip_path, "w") as zipf:
+        for i in range(len(df)):
+            row = df.iloc[i]
 
-    # KHÔNG ghi gì vào vùng checkbox
-    # Checkbox thật sẽ được giữ nguyên
+            # Tạo file Excel tạm cho từng dòng
+            temp_excel = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsm").name
 
-    # Tạo file tạm dạng XLSM để giữ checkbox
-    temp = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsm")
-    wb.save(temp.name)
+            # Mở template
+            wb = load_workbook(excel_template, keep_vba=True)
+            ws = wb.active
 
-    return send_file(temp.name, as_attachment=True, download_name="result.xlsm")
+            # Điền dữ liệu text
+            ws["B3"] = row["Date demande"]
+            ws["G3"] = row["Date mise en service"]
+            ws["G5"] = row["Nb expéditions"]
+            ws["G6"] = row["Nb colis"]
+            ws["B7"] = row["Produit"]
+            ws["B9"] = row["Agence"]
+            ws["B14"] = row["Commercial"]
+            ws["G14"] = row["Présence installation"]
+            ws["B16"] = row["Raison sociale"]
+            ws["G16"] = row["SIRET administratif"]
+            ws["B18"] = row["Adresse d'installation"]
+            ws["B21"] = row["UTILISATEUR"]
+            ws["F21"] = row["DECIDEUR"]
+            ws["B22"] = row["Téléphone UTILISATEUR"]
+            ws["F22"] = row["Téléphone DECIDEUR"]
+            ws["B23"] = row["Email"]
+            ws["A26"] = row["Compte ERM"]
+            ws["B26"] = row["Nom"]
+
+            # Lưu file Excel tạm
+            wb.save(temp_excel)
+
+            # Đặt tên file theo số dòng hoặc theo dữ liệu
+            filename = f"Demande_{i+1}.xlsm"
+
+            # Thêm file Excel vào ZIP
+            zipf.write(temp_excel, arcname=filename)
+
+            # Xóa file Excel tạm
+            os.remove(temp_excel)
+
+    # Trả file ZIP về cho người dùng
+    return send_file(zip_path, as_attachment=True, download_name="resultats.zip")
 
 if __name__ == "__main__":
     app.run()
