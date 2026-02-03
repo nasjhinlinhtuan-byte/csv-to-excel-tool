@@ -18,8 +18,8 @@ def process():
     # Đọc CSV
     df = pd.read_csv(csv_file)
 
-    # Mở Excel mẫu
-    wb = load_workbook(excel_template)
+    # Mở Excel mẫu (XLSM) và GIỮ VBA + Form Controls
+    wb = load_workbook(excel_template, keep_vba=True)
     ws = wb.active
 
     # Chỉ điền dữ liệu text — KHÔNG đụng vào checkbox
@@ -42,14 +42,14 @@ def process():
     ws["A26"] = df["Compte ERM"][0]
     ws["B26"] = df["Nom"][0]
 
-    # KHÔNG ghi gì vào D26, E26, D27, E27 nữa
-    # Checkbox trong file Excel mẫu sẽ được giữ nguyên
+    # KHÔNG ghi gì vào vùng checkbox
+    # Checkbox thật sẽ được giữ nguyên
 
-    # Tạo file tạm để trả về
-    temp = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx")
+    # Tạo file tạm dạng XLSM để giữ checkbox
+    temp = tempfile.NamedTemporaryFile(delete=False, suffix=".xlsm")
     wb.save(temp.name)
 
-    return send_file(temp.name, as_attachment=True, download_name="result.xlsx")
+    return send_file(temp.name, as_attachment=True, download_name="result.xlsm")
 
 if __name__ == "__main__":
     app.run()
