@@ -65,8 +65,9 @@ def process():
             os.remove(temp_excel)
 
     # Trả file ZIP về cho người dùng
-    return send_file(zip_path, as_attachment=True, download_name="resultats.zip")
+    return send_file(zip_path, as_attachment=True, download_name=""C-FB120-0-Gris_Decoupage-Demarrage.zip")
 
 if __name__ == "__main__":
     app.run()
+
 
